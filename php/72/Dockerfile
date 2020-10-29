@@ -1,7 +1,7 @@
 FROM php:7.2.34-fpm-alpine
 RUN apk update
 RUN apk --no-cache add supervisor autoconf build-base
-RUN docker-php-ext-install pdo_mysql mbstring
+RUN docker-php-ext-install pdo_mysql mbstring bcmath exif pcntl sockets xmlrpc
 RUN pecl install -o -f redis \
 &&  rm -rf /tmp/pear \
 &&  docker-php-ext-enable redis
