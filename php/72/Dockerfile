@@ -1,4 +1,4 @@
-FROM php:7.2.34-fpm
+FROM php:7.2.34-fpm-alpine
 RUN apk update
 RUN apk --no-cache add supervisor
 RUN docker-php-ext-install pdo_mysql
