@@ -1,6 +1,6 @@
 FROM php:7.2.34-fpm-alpine
 RUN apk update \
-  && apk --no-cache add supervisor autoconf oniguruma-dev libxml2-dev build-base wget \
+  && apk --no-cache add supervisor autoconf oniguruma-dev libxml2-dev build-base wget tzdata  \
   && docker-php-ext-install pdo_mysql mbstring bcmath exif pcntl sockets xmlrpc \
   && pecl install -o -f redis \
   && rm -rf /tmp/pear \
@@ -15,6 +15,7 @@ RUN apk update \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/php-fpm.ini -O /etc/supervisor.d/php-fpm.ini \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/php/init.sh -O /init.sh \
   && chmod -R 0755 /init.sh \
-  && apk del autoconf oniguruma-dev libxml2-dev build-base wget 
+  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+  && apk del autoconf oniguruma-dev libxml2-dev build-base wget tzdata 
 
 CMD ['/init.sh']
