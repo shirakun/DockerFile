@@ -1,12 +1,18 @@
 FROM php:7.2.34-fpm-alpine
 RUN apk update
-RUN apk --no-cache add supervisor autoconf oniguruma-dev libxml2-dev build-base
-RUN docker-php-ext-install pdo_mysql mbstring bcmath exif pcntl sockets xmlrpc
-RUN pecl install -o -f redis \
-&&  rm -rf /tmp/pear \
-&&  docker-php-ext-enable redis
-RUN apk del autoconf oniguruma-dev libxml2-dev build-base
-RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+  && apk --no-cache add supervisor autoconf oniguruma-dev libxml2-dev build-base wget \
+  && docker-php-ext-install pdo_mysql mbstring bcmath exif pcntl sockets xmlrpc \
+  && pecl install -o -f redis \
+  && rm -rf /tmp/pear \
+  && docker-php-ext-enable redis \
+  && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
   && php composer-setup.php \
   && php -r "unlink('composer-setup.php');" \
-  && mv composer.phar /usr/local/bin/composer
+  && mv composer.phar /usr/local/bin/composer \
+  && mkdir -p /etc/supervisor.d/ \
+  && chmod -R 0755 /etc/supervisor.d \
+  && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/supervisor.conf -O /etc/supervisord.conf \
+  && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/php-fpm.conf -O /etc/supervisor.d/php-fpm.conf \
+  && apk del autoconf oniguruma-dev libxml2-dev build-base wget \
+
+CMD ['/usr/bin/supervisord']
