@@ -15,4 +15,4 @@ RUN apk update \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/php-fpm.conf -O /etc/supervisor.d/php-fpm.conf \
   && apk del autoconf oniguruma-dev libxml2-dev build-base wget \
 
-CMD ['/usr/bin/supervisord']
+CMD ['supervisord']
