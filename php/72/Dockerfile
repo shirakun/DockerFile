@@ -15,7 +15,7 @@ RUN apk update \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/php-fpm.ini -O /etc/supervisor.d/php-fpm.ini \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/php/init.sh -O /init.sh \
   && chmod -R 0755 /init.sh \
-  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+  && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
   && apk del autoconf oniguruma-dev libxml2-dev build-base wget tzdata 
 
 CMD ['/init.sh']
