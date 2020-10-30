@@ -17,4 +17,4 @@ RUN apk update \
   && chmod -R 0755 /init.sh \
   && apk del autoconf oniguruma-dev libxml2-dev build-base wget 
 
-CMD ['/bin/sh' '/init.sh']
+CMD ['/init.sh']
