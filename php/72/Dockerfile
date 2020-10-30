@@ -1,5 +1,5 @@
 FROM php:7.2.34-fpm-alpine
-RUN apk update
+RUN apk update \
   && apk --no-cache add supervisor autoconf oniguruma-dev libxml2-dev build-base wget \
   && docker-php-ext-install pdo_mysql mbstring bcmath exif pcntl sockets xmlrpc \
   && pecl install -o -f redis \
