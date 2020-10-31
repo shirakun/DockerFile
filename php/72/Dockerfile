@@ -13,6 +13,7 @@ RUN apk update \
   && chmod -R 0755 /etc/supervisor.d \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/supervisor.conf -O /etc/supervisord.conf \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/php-fpm.ini -O /etc/supervisor.d/php-fpm.ini \
+  && wget https://github.com/shirakun/DockerFile/raw/master/data/supervisor/conf/crond.ini -O /etc/supervisor.d/crond.ini \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/php/init.sh -O /init.sh \
   && chmod -R 0755 /init.sh \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
