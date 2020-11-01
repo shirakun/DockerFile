@@ -17,7 +17,8 @@ RUN apk update \
   && wget https://github.com/shirakun/DockerFile/raw/master/data/php/init.sh -O /init.sh \
   && chmod -R 0755 /init.sh \
   && cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
-  && apk del autoconf oniguruma-dev libxml2-dev build-base wget tzdata
+  && apk del autoconf oniguruma-dev libxml2-dev build-base wget tzdata \
+  && echo 'Oh Shit Cache! 2020-11-01 20:57'
 
 ENV SUPERVISOR_PATH=""
 ENV CRON_FILE=""
