@@ -23,4 +23,4 @@ RUN apk update \
 ENV SUPERVISOR_PATH=""
 ENV CRON_FILE=""
 
-CMD ['/init.sh']
+CMD ["/bin/sh", "/init.sh"]
